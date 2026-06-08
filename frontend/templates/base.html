@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}FocusAI — Deep Work, Smarter{% endblock %}</title>
+  <meta name="description" content="FocusAI — a professional Pomodoro & AI study workspace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css?v=2">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M9 2h6"></path></svg>
+        </div>
+        <div>
+          <div class="brand-name">FocusAI</div>
+          <div class="brand-sub">Deep work workspace</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="/" data-route="/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+          <span>Timer</span>
+        </a>
+        <a href="/tasks/" data-route="/tasks/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          <span>Tasks</span>
+        </a>
+        <a href="/uploads/" data-route="/uploads/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 14l2 2 4-4"></path></svg>
+          <span>Documents & AI</span>
+        </a>
+        <a href="/analytics/" data-route="/analytics/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 4 4 5-6"></path></svg>
+          <span>Analytics</span>
+        </a>
+      </nav>
+
+      <div class="side-footer">
+        <div class="pro-card">
+          <div class="pro-title">Focus streak</div>
+          <div class="pro-value" id="streakBadge">0 days</div>
+          <div class="pro-bar"><span style="width: 35%"></span></div>
+          <div class="pro-hint">Keep going. Consistency beats intensity.</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="crumb">Workspace</div>
+          <h1 class="page-title">{% block page_title %}Dashboard{% endblock %}</h1>
+        </div>
+        <div class="top-actions">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+            <input placeholder="Quick search…">
+            <kbd>⌘K</kbd>
+          </div>
+          <button class="icon-btn" title="Notifications">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+            <span class="dot"></span>
+          </button>
+          <div class="avatar">FA</div>
+        </div>
+      </header>
+
+      <section class="content">
+        {% block content %}{% endblock %}
+      </section>
+
+      <footer class="foot">
+        <span>© FocusAI</span>
+        <span class="sep">•</span>
+        <span>Built for deep, focused work</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Highlight active nav
+    (function(){
+      const path = window.location.pathname;
+      document.querySelectorAll('.nav-item').forEach(a => {
+        if (a.getAttribute('data-route') === path) a.classList.add('active');
+      });
+    })();
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

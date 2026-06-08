@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block page_title %}Analytics{% endblock %}
+{% block content %}
+<div id="stats" class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-head">
+      <div class="stat-ico grad-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+      </div>
+      <span class="trend up">▲ 12%</span>
+    </div>
+    <h3>Total Sessions</h3>
+    <p id="totalSessions">0</p>
+    <div class="stat-foot">vs last week</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-head">
+      <div class="stat-ico grad-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"></path></svg>
+      </div>
+      <span class="trend up">▲ 8%</span>
+    </div>
+    <h3>Total Minutes</h3>
+    <p id="totalMinutes">0</p>
+    <div class="stat-foot">focused this month</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-head">
+      <div class="stat-ico grad-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+      </div>
+      <span class="trend down">▼ 3%</span>
+    </div>
+    <h3>Tasks Completed</h3>
+    <p id="tasksCompleted">0</p>
+    <div class="stat-foot">across all projects</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head">
+    <div>
+      <div class="eyebrow">Insights</div>
+      <h2 class="card-title">Productivity overview</h2>
+    </div>
+    <div class="chip-row">
+      <span class="chip active">7d</span>
+      <span class="chip">30d</span>
+      <span class="chip">90d</span>
+    </div>
+  </div>
+  <div id="chart" class="chart"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/analytics.js"></script>
+{% endblock %}

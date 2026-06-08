@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block page_title %}Tasks{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-head">
+    <div>
+      <div class="eyebrow">Plan your day</div>
+      <h2 class="card-title">Add a new task</h2>
+    </div>
+  </div>
+
+  <div class="task-input-section">
+    <div class="field grow">
+      <label>Task name</label>
+      <input id="taskName" placeholder="e.g. Write project proposal">
+    </div>
+    <div class="field">
+      <label>Pomodoros</label>
+      <input id="taskPomodoros" type="number" min="1" value="1">
+    </div>
+    <div class="field">
+      <label>Priority</label>
+      <div class="select-wrap">
+        <select id="taskPriority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+    </div>
+    <div class="field">
+      <label>Due date</label>
+      <input id="taskDueDate" type="date">
+    </div>
+    <button class="btn btn-primary tall" onclick="addTask()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+      Add task
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head">
+    <div>
+      <div class="eyebrow">Backlog</div>
+      <h2 class="card-title">Your tasks</h2>
+    </div>
+    <div class="chip-row">
+      <span class="chip active">All</span>
+      <span class="chip">High</span>
+      <span class="chip">Today</span>
+      <span class="chip">Completed</span>
+    </div>
+  </div>
+  <ul id="taskList" class="task-list"></ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/tasks.js"></script>
+{% endblock %}

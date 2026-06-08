@@ -1,0 +1,19 @@
+# Django Core
+Django==5.2.10
+djangorestframework==3.14.0
+
+# Database
+psycopg2-binary==2.9.9
+
+# AI Engine Dependencies
+PyPDF2==3.0.1
+pytesseract==0.3.10
+Pillow==10.1.0
+openai>=1.0.0
+requests==2.31.0
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# Development Tools
+django-cors-headers==4.3.1
