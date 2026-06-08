@@ -1,64 +1,64 @@
-# FocusAI - Pomodoro Timer with AI-Powered Study Assistant
+# 🎯 FocusAI - Pomodoro Timer with AI-Powered Study Assistant
 
-A comprehensive study management system combining the Pomodoro Technique with AI-powered document analysis.
+A modern, feature-rich Pomodoro timer application with AI-powered document analysis, task management, and productivity analytics.
 
-## 🎯 Features
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Django](https://img.shields.io/badge/Django-5.2-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-- ⏱️ **Pomodoro Timer** - Focused study sessions
-- 📝 **Task Management** - Organize your study tasks
-- 🤖 **AI Document Analysis** - Upload PDFs and get AI summaries
-- 📊 **Analytics Dashboard** - Track your productivity
-- 🎓 **Quiz Generation** - AI-generated quizzes from your documents
+## ✨ Features
 
-## 🏗️ Architecture
+### 🍅 Pomodoro Timer
+- Customizable focus sessions (25/5/15 minutes)
+- Visual progress ring with smooth animations
+- Session tracking and statistics
+- Task integration for focused work
 
-```
-✔ Frontend talks ONLY via APIs
-✔ Backend stores data
-✔ AI logic fully separated
-✔ Fallback works without API key
-✔ Everything testable
-```
+### ✅ Task Management
+- Create and organize tasks
+- Set priorities (High/Medium/Low)
+- Due date tracking
+- Pomodoro count per task
+- Progress visualization
 
-### Project Structure
+### 📄 AI-Powered Document Analysis
+- Upload PDF, DOC, DOCX, TXT files
+- Automatic text extraction with OCR support
+- AI-generated summaries (OpenAI/Hugging Face)
+- Interactive quiz generation
+- Document library management
 
-```
-pomodoro-main/
-├── backend/              # Django settings & main URLs
-├── frontend/             # HTML templates & static files
-│   ├── templates/        # HTML pages
-│   └── static/          # CSS & JavaScript
-├── ai_engine/           # AI processing (separated)
-│   ├── text_extractor.py
-│   ├── summarizer.py
-│   ├── quiz_generator.py
-│   └── prompts.py
-├── pomodoro/            # Timer sessions
-├── tasks/               # Task management
-├── documents/           # File uploads
-└── analytics/           # Statistics
-```
+### 📊 Analytics Dashboard
+- Total sessions completed
+- Focused time tracking
+- Task completion statistics
+- Visual productivity trends
 
-## 🚀 Installation
+### 🎨 Modern UI/UX
+- Dark glassmorphic design
+- Gradient accents and smooth animations
+- Fully responsive (mobile-friendly)
+- Professional typography
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.9+
-- PostgreSQL (or use SQLite for development)
-- Tesseract OCR (for image text extraction)
+- Python 3.11+
+- pip package manager
+- (Optional) PostgreSQL for production
 
-### Setup Steps
+### Local Development
 
 1. **Clone the repository**
 ```bash
-cd /home/premkumar/Downloads/pomodoro-main
+git clone https://github.com/Dhivakar49/pomodoro.git
+cd pomodoro
 ```
 
 2. **Create virtual environment**
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate  # Windows
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. **Install dependencies**
@@ -66,127 +66,161 @@ venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-4. **Configure environment variables**
-Create `.env` file:
+4. **Set up environment variables**
 ```bash
-OPENAI_API_KEY=your_openai_api_key_here  # Optional
-SECRET_KEY=your_django_secret_key
-DEBUG=True
+cp .env.example .env
+# Edit .env and add your API keys
 ```
 
-5. **Database setup**
+5. **Run migrations**
 ```bash
-# For PostgreSQL (update settings.py with your credentials)
-# Or switch to SQLite for development:
-# In backend/settings.py, change DATABASES to:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Create superuser**
+6. **Create superuser (optional)**
 ```bash
 python manage.py createsuperuser
 ```
 
-7. **Run the server**
+7. **Start development server**
 ```bash
 python manage.py runserver
 ```
 
-8. **Access the application**
-- Dashboard: http://127.0.0.1:8000/
-- Tasks: http://127.0.0.1:8000/tasks/
-- Documents: http://127.0.0.1:8000/uploads/
-- Analytics: http://127.0.0.1:8000/analytics/
-- Admin: http://127.0.0.1:8000/admin/
+8. **Open in browser**
+```
+http://127.0.0.1:8000
+```
 
-## 🔌 API Endpoints
+## 🌐 Deploy to Render
 
-### Tasks API
-- `GET /api/tasks/` - List all tasks
-- `POST /api/tasks/create/` - Create task
-- `GET /api/tasks/subjects/` - List subjects
-- `POST /api/tasks/subjects/create/` - Create subject
+See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for complete deployment instructions.
 
-### Pomodoro API
-- `POST /api/pomodoro/start/` - Start timer session
-- `POST /api/pomodoro/complete/` - Complete session
-- `POST /api/pomodoro/save/` - Save pomodoro
-- `GET /api/pomodoro/stats/` - Get statistics
+**Quick Deploy:**
+1. Create PostgreSQL database on Render
+2. Create Web Service connected to this repo
+3. Set environment variables (SECRET_KEY, DATABASE_URL, OPENAI_API_KEY)
+4. Deploy! ✨
 
-### Documents API
-- `POST /api/documents/` - Upload document (returns AI summary)
-- `GET /api/documents/` - List uploaded documents
-- `DELETE /api/documents/{id}/` - Delete document
+## 📁 Project Structure
 
-### Analytics API
-- `GET /api/analytics/` - Get productivity statistics
+```
+pomodoro/
+├── ai_engine/              # AI processing modules
+│   ├── quiz_generator.py   # Quiz generation logic
+│   ├── summarizer.py       # Text summarization
+│   ├── text_extractor.py   # PDF/OCR extraction
+│   └── prompts.py          # AI prompts
+├── analytics/              # Analytics app
+├── backend/                # Django settings
+├── documents/              # Document management
+├── frontend/               # Templates & static files
+│   ├── static/
+│   │   ├── css/           # Styles
+│   │   └── js/            # JavaScript
+│   └── templates/         # HTML templates
+├── media/                  # User uploads
+├── pomodoro/              # Pomodoro timer app
+├── tasks/                 # Task management app
+├── .env.example           # Environment template
+├── .gitignore            # Git ignore rules
+├── build.sh              # Render build script
+├── manage.py             # Django management
+├── Procfile              # Process file
+├── render.yaml           # Render configuration
+├── requirements.txt      # Python dependencies
+└── README.md            # This file
+```
 
-## 🤖 AI Features
+## 🔧 Configuration
 
-### Text Extraction
-Supports PDF and image files using PyPDF2 and Tesseract OCR.
+### Environment Variables
 
-### AI Summarization
-- Uses OpenAI GPT-3.5-turbo
-- Falls back to mock summary if API key not configured
-- No errors if OpenAI is unavailable
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `SECRET_KEY` | Django secret key | Yes |
+| `DEBUG` | Debug mode (False in production) | Yes |
+| `DATABASE_URL` | PostgreSQL connection string | Production |
+| `OPENAI_API_KEY` | OpenAI API key | Optional* |
+| `AI_PROVIDER` | AI provider (openai/huggingface) | Optional |
+| `HF_API_KEY` | Hugging Face API key | Optional* |
 
-### Quiz Generation
-AI-generated multiple-choice questions from uploaded content.
+*At least one AI provider key is needed for document analysis features
 
-## 🧪 Testing
+### Database
 
-The application is fully testable with separated concerns:
-- Frontend uses only API calls (fetch)
-- Backend handles all data storage
-- AI engine is modular and mockable
+**Development:** SQLite (default)
+**Production:** PostgreSQL (via DATABASE_URL)
 
-## 📝 Development Notes
+## 🛠️ Technology Stack
 
-- **Database**: PostgreSQL configured, can switch to SQLite for development
-- **CSRF**: Disabled for API endpoints using @api_view decorator
-- **File Uploads**: Stored in `media/documents/`
-- **Static Files**: Located in `frontend/static/`
-- **Templates**: Located in `frontend/templates/`
+**Backend:**
+- Django 5.2
+- Django REST Framework
+- PostgreSQL / SQLite
+- Gunicorn
 
-## 🎨 Frontend Technology
+**Frontend:**
+- HTML5, CSS3, JavaScript
+- Modern CSS (Glassmorphism)
+- Vanilla JS (no frameworks)
 
-- Pure HTML/CSS/JavaScript
-- No framework dependencies
-- Fetch API for all backend communication
-- Modern gradient UI design
+**AI/ML:**
+- OpenAI GPT API
+- Hugging Face Transformers
+- PyPDF2 (PDF processing)
+- Pytesseract (OCR)
 
-## 🔐 Security Notes
+**Deployment:**
+- Render (Platform)
+- WhiteNoise (Static files)
+- dj-database-url (Database config)
 
-- Change `SECRET_KEY` in production
-- Set `DEBUG=False` in production
-- Configure ALLOWED_HOSTS
-- Use environment variables for sensitive data
-- Enable HTTPS in production
+## 📸 Screenshots
 
-## 📦 Production Deployment
+### Timer Dashboard
+Modern Pomodoro timer with task selection and progress tracking.
 
-1. Set environment variables
-2. Configure production database
-3. Collect static files: `python manage.py collectstatic`
-4. Use gunicorn or uwsgi
-5. Set up nginx as reverse proxy
-6. Enable HTTPS
+### Task Management
+Organize tasks with priorities, due dates, and Pomodoro counts.
+
+### Document Analysis
+Upload documents and get AI-generated summaries and quizzes.
+
+### Analytics
+Track your productivity with detailed statistics.
 
 ## 🤝 Contributing
 
-This is an educational project. Feel free to extend and improve!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-MIT License - Feel free to use for learning and development.
-# hackathon1
-# hackathon1
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👨‍💻 Author
+
+**Dhivakar**
+- GitHub: [@Dhivakar49](https://github.com/Dhivakar49)
+
+## 🙏 Acknowledgments
+
+- Pomodoro Technique by Francesco Cirillo
+- Design inspiration from modern productivity apps
+- AI capabilities powered by OpenAI and Hugging Face
+
+## 📞 Support
+
+For issues and questions:
+- Open an [Issue](https://github.com/Dhivakar49/pomodoro/issues)
+- Check [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for deployment help
+
+---
+
+Made with ❤️ and ☕ by Dhivakar
