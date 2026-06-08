@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: focusai-pomodoro
+    env: python
+    buildCommand: |
+      apt-get update
+      apt-get install -y tesseract-ocr
+      ./build.sh
+    startCommand: gunicorn backend.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: DEBUG
+        value: "False"
